@@ -554,6 +554,26 @@ user.afkReason = ''
 }
 	
 switch(command) {
+
+	case 'bc': case 'broadcast': case 'bcall': {
+		if (!isCreator) throw mess.owner
+		if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
+		let anu = await store.chats.all().map(v => v.id)
+		m.reply(`Mengirim Broadcast Ke ${anu.length} Chat\nWaktu Selesai ${anu.length * 1.5} detik`)
+				for (let yoi of anu) {
+				await sleep(1500)
+				/*let btn = [{
+		urlButton: {
+		displayText: 'Source Code',
+		url: 'https://github.com/DikaArdnt/zets-Morou'
+		}
+		}]*/
+		  let txt = `「 Broadcast Bot 」\n\n${text}`
+		  zets.send5ButImg(yoi, txt, zets.user.name, global.thumb)
+				}
+				m.reply('Sukses Broadcast')
+		}
+		break
 //────────────────────[ ANONYMOUS CHAT ]────────────────────
 
 	case 'anonymous': {
@@ -770,8 +790,7 @@ anu = `Hai ${pushname}
 ${prefix}anonymous
 ${prefix}start
 ${prefix}next
-${prefix}keluar
-${prefix}sendkontak`
+${prefix}keluar`
 var button = [
 	{ buttonId: `speedtest`, buttonText: { displayText: `Speedtest` }, type: 1 }, 
 	{ buttonId: `ping`, buttonText: { displayText: `Ping` }, type: 1 },
